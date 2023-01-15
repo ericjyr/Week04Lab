@@ -20,11 +20,28 @@ public class NoteServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
+        String path = getServletContext().getRealPath("/WEB-INF/note.txt");
+
+        String page = request.getParameter("page");
+        
+        String jspPath =  page == null ? "/WEB-INF/viewnote.jsp" 
+                                       : "/WEB-INF/editnote.jsp";
+        
+        getServletContext().getRequestDispatcher(jspPath)
+            .forward(request, response);
+        
+        
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
+        String path = getServletContext().getRealPath("/WEB-INF/note.txt");
+        
+                getServletContext().getRequestDispatcher("/WEB-INF/viewnote.jsp" )
+            .forward(request, response);
     }
 
 
